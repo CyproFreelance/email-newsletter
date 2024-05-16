@@ -1,16 +1,15 @@
 "use client";
 import { ICONS } from "@/constants/icons";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import Emaileditor from "@/components/Pages/Dashboard/email.editor";
 
-// const Emaileditor = dynamic(
-//   () => import("@/shared/components/editor/email.editor"),
-//   {
-//     ssr: false,
-//   }
-// );
-
+const Emaileditor = dynamic(
+  () => import("@/components/Pages/Dashboard/email.editor"),
+  {
+    ssr: false,
+  }
+);
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -21,6 +20,7 @@ const Page = () => {
     <div className="w-full flex bg-a-2/70 border-b border-a-4">
       <div className="w-full pt-4 px-14 text-a-1 rounded-r-xl">
         {/* back arrow */}
+        
         <Link
           href={"/dashboard/write"}
           className="opacity-[.7] w-min flex text-xl transition-all rounded-full items-center hover:bg-white/10 px-4 py-2"

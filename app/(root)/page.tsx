@@ -6,7 +6,7 @@ import React from 'react'
 const page = () => {
   return (
     <>
-      <div className=''>
+      <div className='max-h-screen'>
         <Navbar/>
         <Hero/>
       </div>

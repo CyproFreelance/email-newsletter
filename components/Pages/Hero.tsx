@@ -7,7 +7,7 @@ import { HeroTestimonailProfile } from "@/constants";
 const Hero = () => {
   return (
     <main className="w-full flex flex-col lg:flex-row items-center justify-between px-6 md:px-24 py-14 bgimg transition-all">
-      <div className="flex flex-col items-center lg:items-start gap-6 w-full md:w-1/2 py-14">
+      <div className="flex flex-col items-center lg:items-start gap-6 w-full py-14">
         <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-bold leading-none text-center lg:text-start">
           Power Your <span className="text-a-3">Business</span> Outreach{" "}
           <span className="relative whitespace-nowrap">
@@ -57,13 +57,13 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="flex">
+      <div className="w-full flex items-center justify-center">
         <Image
           src={"/hero.svg"}
           alt=""
-          width={850}
-          height={1900}
-          className="max-lg:w-96 max-lg:h-96"
+          width={750}
+          height={750}
+          className="hidden lg:block"
         />
       </div>
     </main>

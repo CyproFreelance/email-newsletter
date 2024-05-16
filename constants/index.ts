@@ -67,16 +67,16 @@ export const dashboardLinks = [
     icon: ICONS.audience,
   },
   {
-    id: 5,
-    name: "Settings",
-    href: "/dashboard/settings",
-    icon: ICONS.settings,
-  },
-  {
     id: 6,
     name: "View Site",
     href: "/",
     icon: ICONS.view,
+  },
+  {
+    id: 5,
+    name: "Settings",
+    href: "/dashboard/settings",
+    icon: ICONS.settings,
   },
 ];
 

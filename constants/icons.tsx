@@ -1,4 +1,5 @@
 import {
+  ArrowLeft,
   ArrowUp,
   ArrowUpNarrowWide,
   ArrowUpRight,
@@ -31,4 +32,5 @@ export const ICONS = {
   cross: <X />,
   delete: <Delete/>,
   plus: <Plus/>,
+  backArrow: <ArrowLeft/>,
 };

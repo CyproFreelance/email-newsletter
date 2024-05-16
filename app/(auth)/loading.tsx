@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loading = () => {
   return (
-    <div className='text-7xl text-black'>Loading</div>
+    <div className='text-3xl text-black'>Loading</div>
   )
 }
 

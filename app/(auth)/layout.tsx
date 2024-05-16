@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <>
       <div className="flex h-screen overflow-hidden">
-        <section className="flex flex-1 justify-center items-center flex-col py-10 bg-a-1">
+        <section className="flex flex-1 justify-center items-center flex-col py-10 bg-a-2">
           {children}
         </section>
 

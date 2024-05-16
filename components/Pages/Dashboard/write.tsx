@@ -40,7 +40,7 @@ const Write = () => {
   
 
   const FindEmails = async () => {
-    await getEmails({ newsLetterOwnerId: user?._id!})
+    await getEmails({ newsLetterOwnerId: user?.id!})
     .then((res: any) => {
       setEmails(res);
     })

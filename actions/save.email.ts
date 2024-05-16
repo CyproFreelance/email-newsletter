@@ -8,9 +8,9 @@ export const saveEmail = async ({
   content,
   newsLetterOwnerId,
 }: {
-  title: String;
-  content: String;
-  newsLetterOwnerId: String;
+  title: string;
+  content: string;
+  newsLetterOwnerId: string;
 }) => {
   try {
     await connectDb();
@@ -23,16 +23,14 @@ export const saveEmail = async ({
       await Email.findByIdAndUpdate(email._id, {
         content,
       });
-      return {
-        message: "Email Updated Sucessfully",
-      };
+      return { message: "Email updated successfully!" };
     } else {
       await Email.create({
         title,
         content,
         newsLetterOwnerId,
       });
-      return { message: "Email created and saved sucessfully" };
+      return { message: "Email saved successfully!" };
     }
   } catch (error) {
     console.log(error);

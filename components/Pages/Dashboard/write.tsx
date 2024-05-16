@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ICONS } from "@/constants/icons";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
-
+import { deleteEmail } from "@/actions/delete.email";
 import {
   Dialog,
   DialogContent,
@@ -35,26 +35,39 @@ const Write = () => {
 
   useEffect(() => {
     FindEmails();
-    
-  }, [user])
-  
+  }, [user]);
 
   const FindEmails = async () => {
-    await getEmails({ newsLetterOwnerId: user?.id!})
-    .then((res: any) => {
-      setEmails(res);
-    })
-    .catch((error) => {
-      console.log(error);
+    await getEmails({ newsLetterOwnerId: user?.id! })
+      .then((res) => {
+        setEmails(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const [hoveredItemId, setHoveredItemId] = useState(null);
+
+  const handleMouseEnter = (itemId: any) => {
+    setHoveredItemId(itemId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredItemId(null);
+  };
+  const deleteHanlder = async (id: string) => {
+    await deleteEmail({ emailId: id }).then((res) => {
+      FindEmails();
     });
-  } 
+
+    toast.success('Deleted Email Letter')
+  };
 
   return (
     <div className="w-full flex p-5 flex-wrap gap-6 relative">
       <Dialog>
         <div className="w-full border-b border-a-4 pb-4">
           <h1 className="text-2xl font-semibold text-a-1">All Saved Emails</h1>
-
           <DialogTrigger>
             <div className="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 text-2xl fixed bottom-10 right-10 bg-a-3 text-a-1 hover:bg-a-3/90 h-12 rounded-[4px] px-5">
               <span className="text-2xl block text-center">{ICONS.plus}</span>
@@ -90,63 +103,36 @@ const Write = () => {
       </Dialog>
 
       {/* saved emails */}
-      {emails &&
+      {Array.isArray(emails) &&
         emails.map((i: any) => {
           const formattedTitle = i?.title
             ?.replace(/\s+/g, "-")
             .replace(/&/g, "-");
+
           return (
-            <div
-              key={i?._id}
-              className="w-[200px] h-[200px] z-[100] relative bg-slate-50 flex flex-col items-center justify-center rounded border cursor-pointer"
+
+              <div
+                key={i?._id}
+                className="w-[200px] h-[150px] z-[0] text-a-1 relative bg-a-6 flex flex-col items-center justify-center rounded border border-a-4 cursor-pointer"
+                onMouseEnter={() => handleMouseEnter(i?._id)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <span
+                  className={`absolute block transition-all duration-300 z-20 right-2 top-2 text-2xl cursor-pointer text-red-500`}
+                  onClick={() => deleteHanlder(i?._id)}
+                >
+                  {ICONS.delete}
+                </span>
+                <Link
+              href={`/editor?subject=${formattedTitle}`}
+              className="text-xl w-full h-full flex items-center justify-center"
             >
-              <span
-                className="absolute block z-[10001] right-2 top-2 text-2xl cursor-pointer"
-                //   onClick={() => deleteHanlder(i?._id)}
-              >
-                {ICONS.delete}
-              </span>
-              <Link
-                href={`/dashboard/new-email?subject=${formattedTitle}`}
-                className="text-xl"
-              >
                 {i.title}
-              </Link>
-            </div>
+                </Link>
+              </div>
+            
           );
         })}
-
-      {/* {open && (
-        <div className="absolute flex items-center justify-center top-0 left-0 bg-[#2020200e] backdrop-blur-[3px] h-screen w-full">
-          <div className="w-[600px] p-5 bg-a-6 rounded shadow relative">
-            <div className="absolute top-3 right-3">
-              <span
-                className="text-lg cursor-pointer text-a-1"
-                onClick={() => setOpen(!open)}
-              >
-                {ICONS.cross}
-              </span>
-            </div>
-            <h5 className="text-2xl text-a-1 mb-4">Enter your Email subject</h5>
-            <Input
-              type="text"
-              name=""
-              id=""
-              className="w-full my-2 h-[35px] px-2 outline-none border-none bg-a-2/50 text-a-1"
-              placeholder="Write Title Here..."
-              value={emailTitle}
-              onChange={(e) => setEmailTitle(e.target.value)}
-            />
-            <Button
-              className="rounded text-xl mt-3"
-              variant={"default"}
-              onClick={handleCreate}
-            >
-              Continue
-            </Button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };

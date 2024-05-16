@@ -13,6 +13,8 @@ import {
   PenIcon,
   Plus,
   Settings,
+  Trash,
+  Trash2,
   User,
   X,
 } from "lucide-react";
@@ -30,7 +32,7 @@ export const ICONS = {
   copy: <Copy/>,
   link: <ArrowUpRight />,
   cross: <X />,
-  delete: <Delete/>,
+  delete: <Trash2 />,
   plus: <Plus/>,
   backArrow: <ArrowLeft/>,
 };

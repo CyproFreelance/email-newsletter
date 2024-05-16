@@ -11,6 +11,7 @@ const Emaileditor = dynamic(
   }
 );
 
+
 const Page = () => {
   const searchParams = useSearchParams();
   const subject: string = searchParams.get("subject")!;
@@ -20,7 +21,6 @@ const Page = () => {
     <div className="w-full flex bg-a-2/70 border-b border-a-4">
       <div className="w-full pt-4 px-14 text-a-1 rounded-r-xl">
         {/* back arrow */}
-        
         <Link
           href={"/dashboard/write"}
           className="opacity-[.7] w-min flex text-xl transition-all rounded-full items-center hover:bg-white/10 px-4 py-2"
